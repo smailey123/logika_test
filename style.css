@@ -34,10 +34,7 @@ body{
     background-color:#f8e8ff;
     color:#aa00f8;
     box-shadow: 4px 6px 4px #9c9b9b;
-}
-.answer:hover{
-    box-shadow: -4px -6px 4px #9c9b9b;
-    margin-top:5px ;
+
 }
 .container-start{
     display: flex;
@@ -57,14 +54,9 @@ body{
     box-shadow: 10px 8px 5px #9c9c9c;
 }
 .time{
-    font-size: 25px;
     color:#5f008b;
     background-color: #f8e8ff;
     border:2px solid #aa00f8;
     padding:1px 30px 1px 30px;
     box-shadow: 4px 6px 4px #9c9b9b;;
-}
-.container-h3{
-    font-size:25px;
-    margin-bottom: 10px;
 }
