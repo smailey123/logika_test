@@ -1,4 +1,4 @@
-console.log('dfghjk')let question_field = document.querySelector('.question')
+let question_field = document.querySelector('.question')
 let answer_buttons = document.querySelectorAll('.answer')
 let container_h3 = document.querySelector('.container-h3')
 let container_start = document.querySelector('.container-start')
@@ -19,21 +19,6 @@ function shuffle(array) {
     let j = Math.floor(Math.random() * (i + 1));  // Вибираємо індекс рандомного елемента
     [array[i], array[j]] = [array[j], array[i]] // Міняємо місцями з поточним елементом.
   } 
-}
-
-let cookie = false
-let cookies = document.cookie.split(';')
-console.log(cookies)
-for(let i = 0;i<cookies.length;i++){
-    if(cookies[i].split('=')[0] == 'score'){
-        cookie = cookies[i].split('=')[1]
-        break
-    }
-}
-if(cookie){
-    let data = cookie.split('/')
-    container_h3.innerHTML = `Минулого разу ви дали ${data[1]}правильних відповідей із ${data[0]}.Точність - ${Math.round(data[1]*100/data[0])}%`
-
 }
 
 class Question {
@@ -85,9 +70,6 @@ container_main.style.display = 'none'
 let correct_answers_given = 0
 let total_answers_given = 0
 let current_question
-let time = 10
-let timer = document.querySelector('.time');
-
 start_btn.addEventListener('click', function(){
     // start_btn.style.boxShadow ="-10px -8px 5px #9c9c9c" 
     container_start.style.display = 'none'
@@ -96,16 +78,7 @@ start_btn.addEventListener('click', function(){
     current_question.display()
     correct_answers_given = 0
     total_answers_given = 0
-    time = 10
-    timer.innerHTML = time
-    let interval = setInterval(() => {
-        time--;
-        timer.innerHTML = time
-    },1000)
     setTimeout(function(){
-        clearInterval(interval)
-        let new_cookie = `score=${total_answers_given}/${correct_answers_given};max-age=1000000000000000000000000000000000`
-        document.cookie = new_cookie
         container_start.style.display = 'flex'
         container_main.style.display = 'none'
         container_h3.innerHTML = `Ви дали 
@@ -113,7 +86,7 @@ start_btn.addEventListener('click', function(){
         ${total_answers_given}.
         Точність 
         ${Math.round(correct_answers_given *100/total_answers_given)}`
-},time * 1000)
+},20000)
 })
 
 
@@ -169,3 +142,28 @@ start_btn.addEventListener('mouseleave', function(){
         rotate:-2
     })
 })
+
+
+answer_buttons.addEventListener('mouseenter', function(){
+    anime({
+        targets:'.answer',
+        boxShadow:'-4px -6px 4px #9c9b9b'
+    })
+})
+
+answer_buttons.addEventListener('mouseleave', function(){
+    anime({
+        targets:'.answer',
+        boxShadow:'4px 6px 4px #9c9b9b'
+    })
+})
+
+
+var roundLogEl = document.querySelector('.round-log');
+
+anime({
+  targets: roundLogEl,
+  innerHTML: [0, 10000],
+  easing: 'linear',
+  round: 10 // Will round the animated value to 1 decimal
+});
